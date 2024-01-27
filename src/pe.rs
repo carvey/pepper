@@ -1,7 +1,10 @@
 use super::prelude::*;
+use std::{fmt, path::Path};
 
+#[derive(Debug)]
 pub struct Pe {
-    raw: Vec<u8>,
+    //raw: Vec<u8>,
+    path: &'static Path,
     pub dos_header: DosHeader,
     pub coff_header: CoffHeader,
     pub optional_header: OptionalHeader,
@@ -9,7 +12,8 @@ pub struct Pe {
 }
 
 impl Pe {
-    pub fn new(path: &str) -> Result<Self, ParsingError> {
+    pub fn new(path_str: &'static str) -> Result<Self, ParsingError> {
+        let path = Path::new(path_str);
         let raw = std::fs::read(path).expect("failed to read file");
 
         let dos_header = DosHeader::new(&raw).expect("failed to parse DOS header");
@@ -32,11 +36,27 @@ impl Pe {
             .expect("failed to parse section table");
 
         Ok(Self {
-            raw,
+            //raw,
+            path,
             dos_header,
             coff_header,
             optional_header,
             section_table,
         })
+    }
+}
+
+// now that I'm not storing the raw bytes on the Pe struct, I don't need to finishing doing all this manually.
+// will keep for now though. This output is much more pleasant to read
+impl fmt::Display for Pe {
+    // This trait requires `fmt` with this exact signature.
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        writeln!(
+            f,
+            "\nPE File: {:?}\n==========================================",
+            self.path
+        )?;
+        write!(f, "{}", self.dos_header)?;
+        write!(f, "{}", self.coff_header)
     }
 }

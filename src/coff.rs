@@ -12,6 +12,7 @@ PE Header:
 +14  (20)	WORD	SizeOfOptionalHeader
 +16  (22)	WORD	Characteristics
  */
+#[derive(Debug)]
 pub struct CoffHeader {
     pub signature: String, // u32 before utf8 conversion
     pub machine: u16,
@@ -59,5 +60,18 @@ impl CoffHeader {
             num_symbols,
             size_optional_header,
         })
+    }
+}
+
+impl std::fmt::Display for CoffHeader {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        writeln!(f, "\nCOFF Header\n---------------------")?;
+        writeln!(f, "Signature: {}", self.signature)?;
+        writeln!(f, "Machine: {}", self.machine)?;
+        writeln!(f, "Num. Sections: {}", self.num_sections)?;
+        writeln!(f, "Timestamp: {}", self.timestamp)?;
+        writeln!(f, "Symbol Table: {}", self.symbol_table)?;
+        writeln!(f, "Num. Symbols: {}", self.num_symbols)?;
+        writeln!(f, "Size of Optional Header: {}", self.size_optional_header)
     }
 }

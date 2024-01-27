@@ -159,20 +159,6 @@ impl OptionalHeader {
         let size_heap_commit = ArchDependentSized::new(&raw, &mut offset, &magic);
         let loader_flags = read_dword(&raw, &mut offset);
         let num_rva_and_sizes = read_dword(&raw, &mut offset);
-        //let export_dir_va = read_dword(&raw, &mut offset);
-        //let export_dir_size = read_dword(&raw, &mut offset);
-        //let import_dir_va = read_dword(&raw, &mut offset);
-        //let import_dir_size = read_dword(&raw, &mut offset);
-        //let security_dir_va = read_dword(&raw, &mut offset);
-        //let security_dir_size = read_dword(&raw, &mut offset);
-        //let offset_relocation_table_va = read_dword(&raw, &mut offset);
-        //let offset_relocation_table_size = read_dword(&raw, &mut offset);
-        //let arch_specific_data_va = read_dword(&raw, &mut offset);
-        //let arch_specific_data_size = read_dword(&raw, &mut offset);
-        //let rva_gp_va = read_dword(&raw, &mut offset);
-        //let rva_gp_size = read_dword(&raw, &mut offset);
-        //let tls_dir_va = read_dword(&raw, &mut offset);
-        //let tls_dir_size = read_dword(&raw, &mut offset);
 
         // time to parse data directories
         let data_directories: DataDirectories = DataDirectories::new(raw, &mut offset);

@@ -1,5 +1,6 @@
 use super::prelude::*;
 
+#[derive(Debug)]
 pub struct SectionTable {
     pub section_headers: Vec<SectionHeader>,
 }
@@ -17,6 +18,7 @@ impl SectionTable {
     }
 }
 
+#[derive(Debug)]
 pub struct SectionHeader {
     pub name: String,
     pub virtual_size: u32,

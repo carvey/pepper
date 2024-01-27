@@ -23,6 +23,7 @@ DOS MZ Header:
 +28  (40)	Array[10] of WORD	e_res2	Reserved words
 +3C  (60)	DWORD	e_lfanew	File address of new exe header
  */
+#[derive(Debug)]
 pub struct DosHeader {
     pub e_magic: String,
     pub e_lfanew: u32,
@@ -44,5 +45,13 @@ impl DosHeader {
             e_magic,
             e_lfanew: bytes,
         })
+    }
+}
+
+impl std::fmt::Display for DosHeader {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        writeln!(f, "\nDOS Header\n---------------------")?;
+        writeln!(f, "e_magic: {}", self.e_magic)?;
+        writeln!(f, "e_lfanew: {}", self.e_lfanew)
     }
 }
