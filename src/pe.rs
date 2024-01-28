@@ -46,8 +46,8 @@ impl Pe {
     }
 }
 
-// now that I'm not storing the raw bytes on the Pe struct, I don't need to finishing doing all this manually.
-// will keep for now though. This output is much more pleasant to read
+// now that I'm not storing the raw bytes on the Pe struct and can use debug outbut, I don't need to finishing doing all this manually.
+// will keep for now though. This output is much more pleasant to read.
 impl fmt::Display for Pe {
     // This trait requires `fmt` with this exact signature.
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

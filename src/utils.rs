@@ -49,11 +49,13 @@ impl PeFormat {
     }
 }
 
+// TODO: These read functions should be returning Result / Option instead of just u8
+
 pub fn read_byte(raw: &[u8], offset: &mut usize) -> u8 {
     let slice = &raw[*offset..*offset + 1];
     let val = match slice.try_into() {
         Ok(bytes) => u8::from_le_bytes(bytes),
-        Err(e) => panic!(),
+        Err(_) => unimplemented!(),
     };
 
     *offset += 1;
@@ -64,7 +66,7 @@ pub fn read_word(raw: &[u8], offset: &mut usize) -> u16 {
     let slice = &raw[*offset..*offset + WORD_SZ];
     let val = match slice.try_into() {
         Ok(bytes) => u16::from_le_bytes(bytes),
-        Err(e) => panic!(),
+        Err(_) => unimplemented!(),
     };
 
     *offset += WORD_SZ;
@@ -75,7 +77,7 @@ pub fn read_dword(raw: &[u8], offset: &mut usize) -> u32 {
     let slice = &raw[*offset..*offset + DWORD_SZ];
     let val = match slice.try_into() {
         Ok(bytes) => u32::from_le_bytes(bytes),
-        Err(e) => panic!(),
+        Err(_) => unimplemented!(),
     };
 
     *offset += DWORD_SZ;
@@ -86,7 +88,7 @@ pub fn read_dwordlong(raw: &[u8], offset: &mut usize) -> u64 {
     let slice = &raw[*offset..*offset + DWORDLONG_SZ];
     let val = match slice.try_into() {
         Ok(bytes) => u64::from_le_bytes(bytes),
-        Err(e) => panic!(),
+        Err(_) => unimplemented!(),
     };
 
     *offset += DWORDLONG_SZ;

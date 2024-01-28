@@ -5,7 +5,7 @@ pub use super::utils::{
 
 pub use super::error::ParsingError;
 
-pub use super::coff::CoffHeader;
-pub use super::dos::DosHeader;
-pub use super::optional::OptionalHeader;
-pub use super::sections::{SectionHeader, SectionTable};
+pub use super::headers::coff::CoffHeader;
+pub use super::headers::dos::DosHeader;
+pub use super::headers::optional::OptionalHeader;
+pub use super::headers::sections::{SectionHeader, SectionTable};

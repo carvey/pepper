@@ -68,7 +68,7 @@ mod tests {
         ];
         let test_pe_headers = pe.section_table.section_headers;
 
-        // TODO: umm... ?
+        // TODO: don't think this is working how I think it works
         for (correct, parsed) in section_header_names.iter().zip(test_pe_headers) {
             dbg!(correct);
             dbg!(&parsed.name);
